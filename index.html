@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Facebook Post Image Test For OSF Global</title>
+<meta charset="UTF-8">
+<link type="text/css" rel="stylesheet" href="main.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="main.js" type="text/javascript"></script>
+<script>
+  
+//initializing the FB SDK  
+  window.fbAsyncInit = function() {
+
+	  FB.init({
+	    appId      : '779539038807835',
+	    cookie     : true,  // enable cookies to allow the server to access 
+	                        // the session
+	    xfbml      : true,  // parse social plugins on this page
+	    version    : 'v2.2' // use version 2.2
+	  });
+
+	  FB.getLoginStatus(function(response) {
+	    statusChangeCallback(response);
+	  });
+
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+</script>
+</head>
+<body>
+
+	<div id="header" class="header" >
+		<div id="messageText">
+			
+		</div>
+		<div id="btLogin" class="toRight">
+			<fb:login-button scope="public_profile,email,publish_actions,read_stream" onlogin="checkLoginState();" autologoutlink="true">
+			</fb:login-button>
+		</div>
+	</div>
+
+
+	<div>
+		<div class="width50">
+			<p>
+				<span>THIS IS A TEST:</span><br>
+				This is a page to test the sdk api v2.2 from facebook made by Camilo Monsalve Gómez.<br>
+				This page is a response to the Test proposed by OSF Global Services.<br>
+				Task:
+			</p>
+			<ul>
+				<li>Publish a photo to a test account's Facebook wall and add comments to that photo using Facebook Graph API.</li>
+				<li>The task needs to be done with the Javascript SDK.</li>
+			</ul>
+			<p>
+				The image in the right is posted to the facebook wall of the Logged user. If the user wants to post another image, just need to put the url in the text input.
+			</p>
+			
+		</div>
+		<div class="width50">
+			<img id="photo" src="http://demotest.juicenote.com/phototest.jpg" width="40%" height="40%">
+		</div>
+		<form id="form" class="form">
+			<div id="message"></div>
+	    <div class="content">
+	        <div class="intro"></div>
+	        <div id="section0" >
+	            <div class="field"><div class="edit-options"><div class="edit"></div><div class="delete"></div></div><label for="txtArea">Comment to Add:</label><textarea id="txtArea" name="txtArea" placeholder="Comment to Add" wrap="hard"></textarea></div>
+	            <div class="field"><label for="imageArea">Image URL to Add:</label><input type="url" id="imageArea" name="imageArea"></div>
+	        </div>
+	    </div>
+	    <button type="button" class="myButton" onclick="post_wall()">POST</button>
+		</form>
+	</div>
+</body>
+</html>
